@@ -28,6 +28,7 @@
 #include <direct.h>
 #include "Transformable.h"
 #include "utilities.h"
+#include "iopp.h"
 
 using namespace std;
 using namespace pest_utils;
@@ -119,6 +120,10 @@ void RunManagerSerial::run()
     int nins = insfile_vec.size();
 	stringstream message;
 
+	bool isDouble = true;
+	bool forceRadix = false;
+
+
 	success_runs = 0;
 	failed_runs.clear();
     int nruns = file_stor.get_nruns();
@@ -127,47 +132,52 @@ void RunManagerSerial::run()
         Parameters pars = file_stor.get_parameters(i_run);
         Observations obs;
 		vector<double> par_values;
+		vector<double> obs_values;
 		for(auto &i : par_name_vec)
 		{
 			par_values.push_back(pars.get_rec(i));
 		}
 		try {
+			
 			std::cout << string(message.str().size(), '\b');
 			message.str("");
 			message << "(" << success_runs << "/" << nruns << " runs complete)";
 			std::cout << message.str();
 			_chdir(run_dir.c_str());
-			WRTTPL(&ntpl, StringvecFortranCharArray(tplfile_vec, 50, pest_utils::TO_LOWER).get_prt(),
+			/*WRTTPL(&ntpl, StringvecFortranCharArray(tplfile_vec, 50, pest_utils::TO_LOWER).get_prt(),
 				StringvecFortranCharArray(inpfile_vec, 50, pest_utils::TO_LOWER).get_prt(),
 				&npar, StringvecFortranCharArray(par_name_vec, 50, pest_utils::TO_LOWER).get_prt(),
 				&par_values[0], &ifail);
 			if(ifail != 0)
 			{
 				throw PestError("Error processing template file");
-			}
-
+			}*/
+			TemplateFiles tpls(isDouble,forceRadix,tplfile_vec,inpfile_vec,par_name_vec);
+			tpls.writtpl(par_values);
 
 			for (int i=0, n_exec=comline_vec.size(); i<n_exec; ++i)
 			{
 				system(comline_vec[i].c_str());
 			}
 
-		    std::vector<double> obs_vec;
-		    obs_vec.resize(nobs, -9999.00);
-			READINS(&nins, StringvecFortranCharArray(insfile_vec, 50, pest_utils::TO_LOWER).get_prt(),
+		    ///std::vector<double> obs_vec;
+		    //obs_vec.resize(nobs, -9999.00);
+			/*READINS(&nins, StringvecFortranCharArray(insfile_vec, 50, pest_utils::TO_LOWER).get_prt(),
 				StringvecFortranCharArray(outfile_vec, 50, pest_utils::TO_LOWER).get_prt(),
 				&nobs, StringvecFortranCharArray(obs_name_vec, 50, pest_utils::TO_LOWER).get_prt(),
 				&obs_vec[0], &ifail);
 			if(ifail != 0)
 			{
 				throw PestError("Error processing template file");
-			}
+			}*/
+			InstructionFiles ins_files(insfile_vec,outfile_vec,obs_name_vec);
+			obs_values = ins_files.readins();
 			success_runs +=1;
             pars.clear();
             pars.insert(par_name_vec, par_values);
             obs.clear();
-            obs.insert(obs_name_vec, obs_vec);
-            file_stor.update_run(i_run, pars, obs);
+            obs.insert(obs_name_vec, obs_values);
+             file_stor.update_run(i_run, pars, obs);
 		}
 		catch(...)
 		{

@@ -20,6 +20,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "genie", "..\genie\genie.vcxproj", "{5BF76059-872C-4A70-9D5F-235C86131DDD}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yam", "..\yam\yam.vcxproj", "{AA6E1EC6-2E3D-42EE-B997-2F40814DD2C9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{ED02A2E0-4505-485D-8007-1DF45497AADA} = {ED02A2E0-4505-485D-8007-1DF45497AADA}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "morris_meth", "morris_meth\morris_meth.vcxproj", "{0C79A285-E41B-43D6-A799-CAF3D6E71821}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -31,6 +34,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "morris_meth", "morris_meth\
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pestpp_common", "pestpp_common\pestpp_common.vcxproj", "{D25CC810-E9E9-4920-82A4-6F585214480E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "iopp", "..\iopp\iopp\iopp.vcxproj", "{ED02A2E0-4505-485D-8007-1DF45497AADA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -138,6 +143,18 @@ Global
 		{D25CC810-E9E9-4920-82A4-6F585214480E}.Release|Win32.Build.0 = Release|Win32
 		{D25CC810-E9E9-4920-82A4-6F585214480E}.Release|x64.ActiveCfg = Release|x64
 		{D25CC810-E9E9-4920-82A4-6F585214480E}.Release|x64.Build.0 = Release|x64
+		{ED02A2E0-4505-485D-8007-1DF45497AADA}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{ED02A2E0-4505-485D-8007-1DF45497AADA}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{ED02A2E0-4505-485D-8007-1DF45497AADA}.Debug|Win32.ActiveCfg = Debug|Win32
+		{ED02A2E0-4505-485D-8007-1DF45497AADA}.Debug|Win32.Build.0 = Debug|Win32
+		{ED02A2E0-4505-485D-8007-1DF45497AADA}.Debug|x64.ActiveCfg = Debug|x64
+		{ED02A2E0-4505-485D-8007-1DF45497AADA}.Debug|x64.Build.0 = Debug|x64
+		{ED02A2E0-4505-485D-8007-1DF45497AADA}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{ED02A2E0-4505-485D-8007-1DF45497AADA}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{ED02A2E0-4505-485D-8007-1DF45497AADA}.Release|Win32.ActiveCfg = Release|Win32
+		{ED02A2E0-4505-485D-8007-1DF45497AADA}.Release|Win32.Build.0 = Release|Win32
+		{ED02A2E0-4505-485D-8007-1DF45497AADA}.Release|x64.ActiveCfg = Release|x64
+		{ED02A2E0-4505-485D-8007-1DF45497AADA}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

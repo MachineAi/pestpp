@@ -9,6 +9,8 @@ Also included in this project are global sensitivity analysis codes that impleme
 Visit the <a href="http://www.pestpp.org">homepage </a> to download the most recent pre-compiled version 
 
 ##Recent Updates
+<b>Update 10/28/2014</b>: A final release candidate for PEST++ version 3.0 is available. Full documentation will soon follow...
+
 <b>Update 10/1/2014</b>: recent stable versions of PEST++ implement dynamic regularization, full restart capabilities, additional options for formulating the normal equations, and an iterative SVD algorithm for very-large problems.  Additionally the YAMR run manager has been improved to use threaded workers so that the master can more easily load balance.  
 
 ##PEST++ V1.0 References:
